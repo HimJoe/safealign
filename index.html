@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeAlign - AI Safety & Governance Engineering Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #2d3748;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2b6cb0;
+        }
+
+        .header-cta {
+            background: #2b6cb0;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .header-cta:hover {
+            background: #2c5282;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+            padding: 7rem 0 4rem;
+            margin-top: 73px;
+            position: relative;
+        }
+
+        .hero-tagline {
+            font-size: 1rem;
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 3.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            color: #cbd5e1;
+            max-width: 650px;
+            line-height: 1.5;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #60a5fa;
+            display: block;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            background: #2b6cb0;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        .hero-cta:hover {
+            background: #2c5282;
+            transform: translateY(-1px);
+        }
+
+        .hero-cta-secondary {
+            background: transparent;
+            color: #cbd5e1;
+            padding: 1rem 2rem;
+            border: 2px solid #4a5568;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .hero-cta-secondary:hover {
+            border-color: #60a5fa;
+            color: #60a5fa;
+        }
+
+        /* Tool Recommendation Engine */
+        .tool-recommender {
+            background: #f7fafc;
+            padding: 5rem 0;
+        }
+
+        .tool-recommender h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+
+        .tool-recommender-subtitle {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        .recommendation-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .form-group select, .form-group input {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group select:focus, .form-group input:focus {
+            outline: none;
+            border-color: #2b6cb0;
+        }
+
+        .recommend-btn {
+            background: #2b6cb0;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .recommend-btn:hover {
+            background: #2c5282;
+        }
+
+        /* Tool Results */
+        .tool-results {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .tool-results.active {
+            display: block;
+        }
+
+        .tool-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+        }
+
+        .tool-card:hover {
+            border-color: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+        .tool-card.tier-1 {
+            border-left: 4px solid #10b981;
+        }
+
+        .tool-card.tier-2 {
+            border-left: 4px solid #3b82f6;
+        }
+
+        .tool-card.tier-3 {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .tool-card.tier-4 {
+            border-left: 4px solid #ef4444;
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .tool-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .tool-company {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .tool-focus {
+            color: #2b6cb0;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-metrics {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-industry {
+            color: #10b981;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-limitations {
+            color: #ef4444;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .tier-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .tier-1-badge { background: #10b981; }
+        .tier-2-badge { background: #3b82f6; }
+        .tier-3-badge { background: #f59e0b; }
+        .tier-4-badge { background: #ef4444; }
+
+        /* Jo.E Framework Section */
+        .joe-framework {
+            background: #1a202c;
+            color: white;
+            padding: 5rem 0;
+        }
+
+        .joe-framework h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .joe-subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .joe-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .joe-phase {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .joe-phase-number {
+            width: 50px;
+            height: 50px;
+            background: #2b6cb0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .joe-phase h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #f7fafc;
+        }
+
+        .joe-phase p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Platform Features */
+        .platform {
+            background: white;
+            padding: 5rem 0;
+        }
+
+        .platform h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #1a202c;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .platform-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .platform-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .platform-card p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .platform-link {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .platform-link:hover {
+            color: #2c5282;
+        }
+
+        /* Industry Coverage */
+        .industry-coverage {
+            background: #f7fafc;
+            padding: 5rem 0;
+        }
+
+        .industry-coverage h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #1a202c;
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .industry-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .industry-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .industry-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-card p {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #2b6cb0, #3182ce);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: #bee3f8;
+        }
+
+        .final-cta-button {
+            background: white;
+            color: #2b6cb0;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .final-cta-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: #a0aec0;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .platform-grid,
+            .joe-phases,
+            .industry-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">SafeAlign</div>
+            <ul class="nav-links">
+                <li><a href="#recommender">Tool Finder</a></li>
+                <li><a href="#framework">Jo.E Framework</a></li>
+                <li><a href="#platform">Platform</a></li>
+                <li><span style="color: #9ca3af; font-weight: 500; font-size: 0.95rem;">Docs - Work in Progress</span></li>
+            </ul>
+            <span class="header-cta" style="background: #6b7280; cursor: not-allowed;">Work in Progress</span>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-tagline">Built on the Jo.E Framework - collaborative evaluation that integrates human expertise, LLMs, and AI agents.</div>
+            <h1>AI Safety & Governance<br>Engineering Platform</h1>
+            <p class="hero-subtitle">
+                Build AI that's safe, aligned, and compliant—every deployment. One platform combining the Jo.E framework with 29+ specialized tools for comprehensive safety evaluation and governance automation.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">22%</span>
+                    <div class="hero-stat-label">more vulnerabilities detected</div>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">54%</span>
+                    <div class="hero-stat-label">reduction in expert time</div>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">29+</span>
+                    <div class="hero-stat-label">integrated safety tools</div>
+                </div>
+            </div>
+
+            <a href="#recommender" class="hero-cta">Find Your Tools</a>
+            <a href="#framework" class="hero-cta-secondary">Learn Jo.E Framework</a>
+        </div>
+    </section>
+
+    <!-- Tool Recommendation Engine -->
+    <section class="tool-recommender" id="recommender">
+        <div class="container">
+            <h2>AI Safety Tool Recommendation Engine</h2>
+            <p class="tool-recommender-subtitle">
+                Get personalized tool recommendations based on your specific AI safety and governance needs
+            </p>
+            
+            <div class="recommendation-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="focus-area">Primary Focus Area</label>
+                        <select id="focus-area">
+                            <option value="">Select your focus...</option>
+                            <option value="llm-agents">LLM & Agent Evaluation</option>
+                            <option value="bias-fairness">Bias & Fairness</option>
+                            <option value="explainability">Explainability</option>
+                            <option value="governance">Governance & Compliance</option>
+                            <option value="comprehensive">Comprehensive AI Safety</option>
+                            <option value="monitoring">Real-time Monitoring</option>
+                            <option value="documentation">Documentation & Transparency</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry">
+                            <option value="">Select your industry...</option>
+                            <option value="finance">Financial Services</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="enterprise">Enterprise/Government</option>
+                            <option value="research">Research/Academic</option>
+                            <option value="tech">Technology/SaaS</option>
+                            <option value="retail">Retail/E-commerce</option>
+                            <option value="general">Cross-industry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maturity">Maturity Level Needed</label>
+                        <select id="maturity">
+                            <option value="">Select maturity level...</option>
+                            <option value="tier1">Tier 1: Production-ready, Enterprise</option>
+                            <option value="tier2">Tier 2: Emerging, LLM-focused</option>
+                            <option value="tier3">Tier 3: Specialized tools</option>
+                            <option value="tier4">Tier 4: Documentation/Static</option>
+                            <option value="any">Any tier suitable</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="free">Free/Open Source</option>
+                            <option value="startup">Startup ($0-10k/year)</option>
+                            <option value="mid">Mid-market ($10k-100k/year)</option>
+                            <option value="enterprise">Enterprise ($100k+/year)</option>
+                            <option value="flexible">Flexible budget</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="recommend-btn" onclick="getRecommendations()">Get Tool Recommendations</button>
+                
+                <div class="tool-results" id="tool-results">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jo.E Framework -->
+    <section class="joe-framework" id="framework">
+        <div class="container">
+            <h2>The Jo.E Framework</h2>
+            <p class="joe-subtitle">
+                Joint Evaluation methodology integrating human expertise, LLMs, and AI agents for comprehensive AI safety assessment
+            </p>
+            
+            <div class="joe-phases">
+                <div class="joe-phase">
+                    <div class="joe-phase-number">1</div>
+                    <h3>LLM Evaluation</h3>
+                    <p>Independent evaluator LLMs conduct initial screening using standardized metrics, detecting patterns and flagging potential issues for deeper investigation.</p>
+                </div>
+                
+                <div class="joe-phase">
+                    <div class="joe-phase-number">2</div>
+                    <h3>AI Agent Testing</h3>
+                    <p>Specialized agents perform systematic adversarial testing, bias detection, and edge case exploration to verify and classify potential issues.</p>
+                </div>
+                
+                <div class="joe-phase">
+                    <div class="joe-phase-number">3</div>
+                    <h3>Human Expert Review</h3>
+                    <p>Domain specialists provide final judgment on nuanced concerns, ethical considerations, and contextual appropriateness that automated systems cannot assess.</p>
+                </div>
+                
+                <div class="joe-phase">
+                    <div class="joe-phase-number">4</div>
+                    <h3>Iterative Refinement</h3>
+                    <p>Evaluation insights feed back into model improvement processes, enabling continuous enhancement of AI safety and alignment.</p>
+                </div>
+                
+                <div class="joe-phase">
+                    <div class="joe-phase-number">5</div>
+                    <h3>Controlled Deployment</h3>
+                    <p>Models undergo continuous monitoring in limited environments before full deployment, ensuring real-world safety validation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="platform" id="platform">
+        <div class="container">
+            <h2>SafeAlign Platform: Jo.E-Powered Safety Engineering</h2>
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h3>Comprehensive Safety Evaluation</h3>
+                    <p>Deploy the complete Jo.E framework with 500+ built-in evaluations covering bias, toxicity, alignment verification, and domain-specific safety metrics.</p>
+                    <span class="platform-link" style="color: #9ca3af; cursor: default;">Work in Progress</span>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Integrated Tool Ecosystem</h3>
+                    <p>Seamlessly connect with 29+ specialized tools including TruLens, Anthropic Safety Layers, Microsoft Responsible AI, and IBM AI360 suites.</p>
+                    <span class="platform-link" style="color: #9ca3af; cursor: default;">Work in Progress</span>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Governance Automation</h3>
+                    <p>Automate compliance workflows with built-in support for EU AI Act, NIST AI RMF, ISO standards, and custom regulatory frameworks.</p>
+                    <span class="platform-link" style="color: #9ca3af; cursor: default;">Work in Progress</span>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Alignment Monitoring</h3>
+                    <p>Continuous monitoring of AI behavior alignment with organizational values, ethical guidelines, and intended objectives across all deployments.</p>
+                    <span class="platform-link" style="color: #9ca3af; cursor: default;">Work in Progress</span>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Expert Network</h3>
+                    <p>Access to curated network of AI safety experts, ethics specialists, and domain professionals for critical human evaluation tier.</p>
+                    <span class="platform-link" style="color: #9ca3af; cursor: default;">Work in Progress</span>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Enterprise Integration</h3>
+                    <p>Deploy across your existing infrastructure with support for major cloud platforms, MLOps pipelines, and enterprise security requirements.</p>
+                    <span class="platform-link" style="color: #9ca3af; cursor: default;">Work in Progress</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Coverage -->
+    <section class="industry-coverage">
+        <div class="container">
+            <h2>Proven Across Industries</h2>
+            <div class="industry-grid">
+                <div class="industry-card">
+                    <div class="industry-icon">🏦</div>
+                    <h3>Financial Services</h3>
+                    <p>Bias detection, explainability, regulatory compliance</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">🏥</div>
+                    <h3>Healthcare</h3>
+                    <p>Safety validation, clinical decision support, HIPAA compliance</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">🏛️</div>
+                    <h3>Government</h3>
+                    <p>Policy compliance, transparency, public sector requirements</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">🔬</div>
+                    <h3>Research</h3>
+                    <p>Academic evaluation, reproducibility, open science standards</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">💻</div>
+                    <h3>Technology</h3>
+                    <p>LLM evaluation, agent safety, scalable deployment</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">🛒</div>
+                    <h3>Retail</h3>
+                    <p>Recommendation fairness, customer service AI, personalization ethics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Start Building Safer AI Today</h2>
+            <p>Join leading AI teams using the Jo.E framework to deploy responsible, aligned AI systems at scale.</p>
+            <span class="final-cta-button" style="background: #e5e7eb; color: #6b7280; cursor: not-allowed;">Work in Progress</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SafeAlign. Responsible AI deployment, engineered for scale. Built on the Jo.E Framework.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tool recommendation data
+        const toolsData = [
+            {
+                name: "Azure Responsible AI Dashboard",
+                company: "Microsoft",
+                focus: "Comprehensive AI incl. agents",
+                metrics: "Fairness, Explainability, Counterfactuals, Data Balance",
+                industry: "Enterprise, Healthcare, Government",
+                limitations: "Azure-specific, limited customizability",
+                tier: "tier-1",
+                categories: ["comprehensive", "governance"],
+                industries: ["enterprise", "healthcare", "finance"],
+                budget: ["enterprise"],
+                link: "https://responsibleaitoolbox.ai/",
+                cost: "Enterprise pricing"
+            },
+            {
+                name: "TruLens",
+                company: "TruEra",
+                focus: "LLMs & Agents",
+                metrics: "Toxicity, Hallucination Rate, Helpfulness, Bias",
+                industry: "Finance, Legaltech, Healthcare",
+                limitations: "LLM-specific, early-stage",
+                tier: "tier-2",
+                categories: ["llm-agents"],
+                industries: ["finance", "healthcare", "tech"],
+                budget: ["mid", "enterprise"],
+                link: "https://www.trulens.org/",
+                cost: "$50k-200k/year"
+            },
+            {
+                name: "Anthropic Claude Safety Layers",
+                company: "Anthropic",
+                focus: "Claude LLMs, Agents",
+                metrics: "Toxicity filters, prompt classification, red team alerts",
+                industry: "General-purpose LLMs",
+                limitations: "Internal use, limited visibility",
+                tier: "tier-2",
+                categories: ["llm-agents"],
+                industries: ["tech", "research"],
+                budget: ["enterprise"],
+                link: "https://www.anthropic.com/claude",
+                cost: "API-based pricing"
+            },
+            {
+                name: "IBM AI Explainability 360",
+                company: "IBM",
+                focus: "Explainability",
+                metrics: "Local & global explanations, feature importance",
+                industry: "Finance, Insurance, Healthcare",
+                limitations: "Not real-time",
+                tier: "tier-1",
+                categories: ["explainability"],
+                industries: ["finance", "healthcare"],
+                budget: ["mid", "enterprise"],
+                link: "https://aix360.mybluemix.net/",
+                cost: "Open source + enterprise support"
+            },
+            {
+                name: "Fairlearn",
+                company: "Microsoft",
+                focus: "Bias & Fairness",
+                metrics: "Demographic Parity, Equalized Odds, Disparate Impact",
+                industry: "HR, Financial Services",
+                limitations: "Needs demographic labels",
+                tier: "tier-3",
+                categories: ["bias-fairness"],
+                industries: ["finance", "enterprise"],
+                budget: ["free", "startup"],
+                link: "https://fairlearn.org/",
+                cost: "Free (open source)"
+            },
+            {
+                name: "Zeno",
+                company: "Robust Intelligence",
+                focus: "LLMs, Agents",
+                metrics: "Bias, Toxicity, Completion Accuracy, Success Rate",
+                industry: "SaaS, Enterprise",
+                limitations: "Agent focus limited",
+                tier: "tier-2",
+                categories: ["llm-agents", "monitoring"],
+                industries: ["tech", "enterprise"],
+                budget: ["mid", "enterprise"],
+                link: "https://zenoml.com/",
+                cost: "$25k-100k/year"
+            },
+            {
+                name: "Model Cards Toolkit",
+                company: "Google",
+                focus: "General ML/AI models",
+                metrics: "Model transparency, performance, ethical use, caveats",
+                industry: "Cross-industry (Open Source)",
+                limitations: "Static documentation only",
+                tier: "tier-4",
+                categories: ["documentation"],
+                industries: ["general", "research"],
+                budget: ["free"],
+                link: "https://github.com/tensorflow/model-card-toolkit",
+                cost: "Free (open source)"
+            },
+            {
+                name: "Credo AI",
+                company: "Credo AI",
+                focus: "AI Policy, Governance",
+                metrics: "Risk scores, policy compliance, bias, fairness",
+                industry: "Government, Finance",
+                limitations: "Proprietary; setup-heavy",
+                tier: "tier-1",
+                categories: ["governance"],
+                industries: ["enterprise", "finance"],
+                budget: ["enterprise"],
+                link: "https://www.credo.ai/",
+                cost: "$100k+/year"
+            },
+            {
+                name: "Arthur AI",
+                company: "Arthur AI",
+                focus: "ML Ops + Responsible AI",
+                metrics: "Bias, Drift, Accuracy, Feature Attribution",
+                industry: "Insurance, Finance, Healthcare",
+                limitations: "Pipeline-dependent",
+                tier: "tier-1",
+                categories: ["monitoring", "comprehensive"],
+                industries: ["finance", "healthcare"],
+                budget: ["mid", "enterprise"],
+                link: "https://www.arthur.ai/",
+                cost: "$50k-300k/year"
+            },
+            {
+                name: "WhyLabs",
+                company: "WhyLabs",
+                focus: "Real-time ML pipelines",
+                metrics: "Data Drift, Anomaly Detection, Fairness Flags",
+                industry: "Retail, Logistics, Media",
+                limitations: "Not for LLMs",
+                tier: "tier-3",
+                categories: ["monitoring"],
+                industries: ["retail", "tech"],
+                budget: ["startup", "mid"],
+                link: "https://whylabs.ai/",
+                cost: "$10k-50k/year"
+            }
+        ];
+
+        function getRecommendations() {
+            const focusArea = document.getElementById('focus-area').value;
+            const industry = document.getElementById('industry').value;
+            const maturity = document.getElementById('maturity').value;
+            const budget = document.getElementById('budget').value;
+
+            if (!focusArea) {
+                alert('Please select a focus area to get recommendations.');
+                return;
+            }
+
+            let filteredTools = toolsData.filter(tool => {
+                let matches = 0;
+                
+                // Focus area matching
+                if (tool.categories.includes(focusArea)) matches += 3;
+                
+                // Industry matching
+                if (industry && tool.industries.includes(industry)) matches += 2;
+                
+                // Maturity/tier matching
+                if (maturity && maturity !== 'any') {
+                    const tierNum = maturity.replace('tier', '');
+                    if (tool.tier === `tier-${tierNum}`) matches += 2;
+                }
+                
+                // Budget matching
+                if (budget && tool.budget.includes(budget)) matches += 1;
+                
+                return matches > 0;
+            });
+
+            // Sort by relevance score
+            filteredTools.sort((a, b) => {
+                let scoreA = 0, scoreB = 0;
+                
+                if (a.categories.includes(focusArea)) scoreA += 3;
+                if (b.categories.includes(focusArea)) scoreB += 3;
+                
+                if (industry) {
+                    if (a.industries.includes(industry)) scoreA += 2;
+                    if (b.industries.includes(industry)) scoreB += 2;
+                }
+                
+                return scoreB - scoreA;
+            });
+
+            displayResults(filteredTools, focusArea, industry);
+        }
+
+        function displayResults(tools, focusArea, industry) {
+            const resultsContainer = document.getElementById('tool-results');
+            
+            if (tools.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: #4a5568;">
+                        <h3>No exact matches found</h3>
+                        <p>Try adjusting your criteria or contact us for custom recommendations.</p>
+                    </div>
+                `;
+            } else {
+                let html = `
+                    <h3 style="margin-bottom: 1.5rem; color: #2d3748;">
+                        Recommended Tools for ${getFocusAreaName(focusArea)}
+                        ${industry ? ` in ${getIndustryName(industry)}` : ''}
+                    </h3>
+                `;
+                
+                tools.forEach(tool => {
+                    html += `
+                        <div class="tool-card ${tool.tier}">
+                            <div class="tool-header">
+                                <div class="tool-name">${tool.name}</div>
+                                <div>
+                                    <span class="tool-company">${tool.company}</span>
+                                    <span class="tier-badge ${tool.tier}-badge">${getTierName(tool.tier)}</span>
+                                </div>
+                            </div>
+                            <div class="tool-focus">Focus: ${tool.focus}</div>
+                            <div class="tool-metrics">Key Metrics: ${tool.metrics}</div>
+                            <div class="tool-industry">Industries: ${tool.industry}</div>
+                            <div class="tool-limitations">Limitations: ${tool.limitations}</div>
+                            <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                <a href="${tool.link}" target="_blank" class="platform-link">Learn More →</a>
+                                <span style="color: #10b981; font-weight: 500; font-size: 0.9rem;">${tool.cost}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.add('active');
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function getFocusAreaName(value) {
+            const names = {
+                'llm-agents': 'LLM & Agent Evaluation',
+                'bias-fairness': 'Bias & Fairness',
+                'explainability': 'Explainability',
+                'governance': 'Governance & Compliance',
+                'comprehensive': 'Comprehensive AI Safety',
+                'monitoring': 'Real-time Monitoring',
+                'documentation': 'Documentation & Transparency'
+            };
+            return names[value] || value;
+        }
+
+        function getIndustryName(value) {
+            const names = {
+                'finance': 'Financial Services',
+                'healthcare': 'Healthcare',
+                'enterprise': 'Enterprise/Government',
+                'research': 'Research/Academic',
+                'tech': 'Technology/SaaS',
+                'retail': 'Retail/E-commerce',
+                'general': 'Cross-industry'
+            };
+            return names[value] || value;
+        }
+
+        function getTierName(tier) {
+            const names = {
+                'tier-1': 'Tier 1',
+                'tier-2': 'Tier 2',
+                'tier-3': 'Tier 3',
+                'tier-4': 'Tier 4'
+            };
+            return names[tier] || tier;
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Add fade-in class to sections
+        document.querySelectorAll('.platform-card, .joe-phase, .industry-card').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
